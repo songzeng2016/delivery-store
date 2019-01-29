@@ -1,30 +1,39 @@
 <template>
   <div class="index">
+    <swiper
+      class="swiper"
+      :indicator-dots="true"
+      :autoplay="true"
+      :interval="3000"
+      :duration="1000"
+      :circular="true"
+    >
+      <swiper-item v-for="item in imgUrls" :key="item">
+        <image :src="item" class="image"/>
+      </swiper-item>
+    </swiper>
     <ul class="list-wrapper">
       <li class="list" v-for="(item, index) in list" :key="index">
-        <div class="img-wrapper">
-          <img class="img" :src="item.src" alt="">
-        </div>
-        <div class="info">
-          <p class="name">{{item.name}}</p>
-          <p class="count">库存: {{item.count}}</p>
-          <p class="price">
-            <span>￥{{item.price}}</span>
-            <span>   加入购物车</span>
-          </p>
-        </div>
+        <img class="img" :src="item.src" alt="">
+        <p class="name">{{item.name}}</p>
+        <p class="price">￥{{item.price}}</p>
       </li>
     </ul>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import list from './data'
+  import list from './data';
 
   export default {
     data() {
       return {
         list,
+        imgUrls: [
+          'https://yanxuan.nosdn.127.net/95f65bf31c7c305da532728d75b2039f.jpg?imageView&quality=75&thumbnail=750x0',
+          'https://yanxuan.nosdn.127.net/0dc6d7a3d012795dcdbc5508090c3d89.jpg?imageView&quality=75&thumbnail=750x0',
+          'https://yanxuan.nosdn.127.net/8c8ad27b6ab8c9e8841e03c5ee21954f.jpg?imageView&quality=75&thumbnail=750x0'
+        ]
       };
     }
   };
@@ -32,25 +41,34 @@
 
 <style lang="stylus" type="text/stylus" scoped>
   .index
+    height: fit-content
+    min-height: 100%
+    background: #f4f4f4
+    .swiper
+      width: 100%
+      height: 200px
+      .image
+        width: 100%
+        height: 100%
     .list-wrapper
       display: flex
       flex-wrap: wrap
+      padding: 2%
+      justify-content: space-between
       .list
-        width: 50%
-        padding: 10px
+        width: 49%
+        margin: 1% 0
+        padding: 5px 0
+        background: #ffffff
         box-sizing: border-box
-        &:nth-child(odd)
-          padding-right: 0
-        .img-wrapper
-          display: flex
-          justify-content: center
-          align-items: center
-          width: 100%
-          height: 150px
-          background: #f4f4f4
-          .img
-            width: 80px
-            height: 80px
-        .info
-          font-size: 14px
+        text-align: center
+        font-size: 16px
+        .img
+          width: 100px
+          height: 80px
+        .name
+          margin: 5px 0
+          color: #666666
+        .price
+          color: #b03030
 </style>
