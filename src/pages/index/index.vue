@@ -35,7 +35,17 @@
           'https://yanxuan.nosdn.127.net/8c8ad27b6ab8c9e8841e03c5ee21954f.jpg?imageView&quality=75&thumbnail=750x0'
         ]
       };
-    }
+    },
+    mounted() {
+      this.getList();
+    },
+    methods: {
+      getList() {
+        this.$post('/aa', {}).then(json => {
+          console.log(json);
+        });
+      }
+    },
   };
 </script>
 
