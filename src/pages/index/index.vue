@@ -13,8 +13,12 @@
       </swiper-item>
     </swiper>
     <ul class="list-wrapper">
-      <li class="list" v-for="(item, index) in list" :key="index">
-        <img class="img" :src="item.src" alt="">
+      <li
+        class="list"
+        v-for="(item, index) in list"
+        :key="index"
+        @click="navToDetail(item)">
+        <img class="img" :src="item.src || item.img" alt="">
         <p class="name">{{item.name}}</p>
         <p class="price">￥{{item.price}}</p>
       </li>
@@ -41,11 +45,23 @@
     },
     methods: {
       getList() {
-        this.$post('/aa', {}).then(json => {
-          console.log(json);
+        this.$post('/goods/getList', {
+          pageNum: 1,
+          pageSize: 100
+        }).then(json => {
+          const list = json.data.list;
+          list.forEach(item => {
+            item.img = 'http://127.0.0.1:3000' + item.img;
+          });
+          this.list = list.concat(this.list);
         });
-      }
-    },
+      },
+      navToDetail(item) {
+        wx.navigateTo({
+          url: `/pages/detail/main?goods=${JSON.stringify(item)}`,
+        });
+      },
+    }
   };
 </script>
 

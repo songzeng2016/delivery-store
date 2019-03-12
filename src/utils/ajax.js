@@ -4,11 +4,8 @@ const methodType = {
   post: 'POST'
 };
 
-class Ajax {
-  constructor() {
-    this.url = url;
-  }
-
+const ajax = {
+  url,
   _request(method, url, data = {}) {
     return new Promise((resolve, reject) => {
       wx.request({
@@ -23,19 +20,17 @@ class Ajax {
         }
       });
     });
-  }
+  },
 
-  async get(url, data) {
-    const json = await this._request(methodType.get, url, data);
+  get: async (url, data) => {
+    const json = await ajax._request(methodType.get, url, data);
+    return json;
+  },
+
+  post: async (url, data) => {
+    const json = await ajax._request(methodType.post, url, data);
     return json;
   }
+};
 
-  async post(url, data) {
-    console.log(this._request);
-    const json = await this._request(methodType.post, url, data);
-    debugger;
-    return json;
-  }
-}
-
-export default new Ajax();
+export default ajax;

@@ -8,12 +8,20 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import { getCart } from 'store/mutations-types';
+  import { mapGetters } from 'vuex';
+
   export default {
     data() {
       return {
-        list: [],
-      }
+        list: []
+      };
     },
+    computed: {
+      ...mapGetters([
+        getCart
+      ])
+    }
   };
 </script>
 

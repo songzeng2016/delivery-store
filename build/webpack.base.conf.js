@@ -43,7 +43,8 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue': 'mpvue',
-      '@': resolve('src')
+      '@': resolve('src'),
+      'store': resolve('src/store'),
     },
     symlinks: false,
     aliasFields: ['mpvue', 'weapp', 'browser'],
