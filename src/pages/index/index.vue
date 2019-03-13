@@ -28,6 +28,8 @@
 
 <script type="text/ecmascript-6">
   import list from './data';
+  import { getCart, setCart } from 'store/mutations-types';
+  import { mapGetters, mapMutations } from 'vuex';
 
   export default {
     data() {
@@ -40,10 +42,19 @@
         ]
       };
     },
+    computed: {
+      ...mapGetters([
+        getCart
+      ]),
+    },
     mounted() {
       this.getList();
+      !this.getCart && this.getCartList();
     },
     methods: {
+      ...mapMutations([
+        setCart
+      ]),
       getList() {
         this.$post('/goods/getList', {
           pageNum: 1,
@@ -56,11 +67,17 @@
           this.list = list.concat(this.list);
         });
       },
-      navToDetail(item) {
-        wx.navigateTo({
-          url: `/pages/detail/main?goods=${JSON.stringify(item)}`,
+      getCartList() {
+        this.$post('/cart/get').then(json => {
+          const list = json.data.list;
+          this.setCart(list);
         });
       },
+      navToDetail(item) {
+        wx.navigateTo({
+          url: `/pages/detail/main?goods=${JSON.stringify(item)}`
+        });
+      }
     }
   };
 </script>

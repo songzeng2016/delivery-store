@@ -2,15 +2,15 @@
   <div class="detail">
     <img :src="goods.img" alt="">
     <div class="cart">
-      <div class="add" @click="addCart">加入购物车</div>
+      <div class="add" @click="add">加入购物车</div>
       <div class="buy">立即购买</div>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import { setCart } from 'store/mutations-types';
-  import { mapMutations } from 'vuex';
+  import { addCart } from 'store/mutations-types';
+  import { mapActions } from 'vuex';
 
   export default {
     data() {
@@ -19,16 +19,15 @@
       };
     },
     mounted() {
-      console.log(this.$mp);
       const { goods } = this.$mp.query;
       this.goods = JSON.parse(goods);
     },
     methods: {
-      ...mapMutations([
-        setCart
+      ...mapActions([
+        addCart
       ]),
-      addCart() {
-        this.setCart([this.goods]);
+      add() {
+        this.addCart(this.goods);
       }
     }
   };

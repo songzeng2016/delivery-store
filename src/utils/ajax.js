@@ -13,10 +13,18 @@ const ajax = {
         method,
         data,
         header: {
-          'content-type': method === methodType.post ? 'application/x-www-form-urlencoded' : 'application/json'
+          'content-type': method === methodType.post ? 'application/x-www-form-urlencoded' : 'application/json',
+          'sessionId': wx.getStorageSync('sessionId')
         },
         success: (res) => {
-          resolve(res.data);
+          const { code, msg } = res.data;
+          if (code === '200') {
+            resolve(res.data);
+          } else if (code === '501') {
+            console.log('未登录');
+          } else {
+            console.log(msg);
+          }
         }
       });
     });
