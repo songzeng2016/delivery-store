@@ -22,6 +22,11 @@ const ajax = {
             resolve(res.data);
           } else if (code === '501') {
             console.log('未登录');
+            wx.redirectTo({
+              url: '/pages/login/main'
+            });
+            wx.setStorageSync('sessionId', null);
+            wx.setStorageSync('cart', null);
           } else {
             console.log(msg);
           }

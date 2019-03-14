@@ -51,6 +51,9 @@
       this.getList();
       !this.getCart && this.getCartList();
     },
+    onPullDownRefresh() {
+      this.getList();
+    },
     methods: {
       ...mapMutations([
         setCart
@@ -75,7 +78,7 @@
       },
       navToDetail(item) {
         wx.navigateTo({
-          url: `/pages/detail/main?goods=${JSON.stringify(item)}`
+          url: `/pages/detail/main?id=${item.id}`
         });
       }
     }

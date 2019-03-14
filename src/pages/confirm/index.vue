@@ -30,7 +30,7 @@
       <span>
         <span>合计:</span>
         <span class="price">￥{{selectPrice}}</span>
-        <span class="settle" @click="navToConfirm">结算({{selectNum}})</span>
+        <span class="settle">结算({{selectNum}})</span>
       </span>
     </div>
   </div>
@@ -99,11 +99,6 @@
         this.list = this.list.map(item => {
           item.checked = this.allChecked;
           return item;
-        });
-      },
-      navToConfirm() {
-        wx.navigateTo({
-          url: '/pages/confirm/main'
         });
       }
     }

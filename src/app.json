@@ -3,6 +3,7 @@
     "pages/login/main",
     "pages/index/main",
     "pages/cart/main",
+    "pages/confirm/main",
     "pages/me/main",
     "pages/detail/main"
   ],
