@@ -24,5 +24,9 @@ export default {
     ajax.post('/cart/add', goods).then(json => {
       commit(types.setCart, cart);
     });
+  },
+  [types.deleteCart]({ commit, state }, ids) {
+    const cart = (state.cart || []).filter(item => !ids.includes(item.id));
+    commit(types.setCart, cart);
   }
 };

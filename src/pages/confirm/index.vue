@@ -1,19 +1,21 @@
 <template>
   <div class="cart">
     <ul v-if="list.length" class="wrapper">
-      <li class="list" v-for="(item, index) in list" :key="index">
-        <checkbox-group @change="checked(index)">
-          <checkbox :checked="item.checked"></checkbox>
-        </checkbox-group>
+      <li
+        class="list"
+        v-for="(item, index) in list"
+        :key="index"
+        v-if="item.checked">
         <img class="img" :src="'http://127.0.0.1:3000' + item.img" alt="">
         <span class="info">
           <span class="name">{{item.name}}</span>
           <div class="bottom">
             <span class="price">￥{{item.price}}</span>
             <div class="button">
-              <span>-</span>
-              <input class="input" type="number" v-model="item.num">
-              <span>+</span>
+              <!--<span>-</span>-->
+              <!--<input class="input" type="number" v-model="item.num">-->
+              <!--<span>+</span>-->
+              <span>x {{item.num}}</span>
             </div>
           </div>
         </span>
@@ -24,21 +26,22 @@
       <p class="desc">购物车空空如也~</p>
     </div>
     <div v-if="list.length" class="footer">
-      <checkbox-group @change="selectAll">
-        <checkbox :checked="allChecked">全选</checkbox>
-      </checkbox-group>
+      <!--<checkbox-group @change="selectAll">-->
+      <!--<checkbox :checked="allChecked">全选</checkbox>-->
+      <!--</checkbox-group>-->
+      <span></span>
       <span>
         <span>合计:</span>
         <span class="price">￥{{selectPrice}}</span>
-        <span class="settle">结算({{selectNum}})</span>
+        <span class="settle" @click="addOrder">提交订单</span>
       </span>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import { getCart, setCart } from 'store/mutations-types';
-  import { mapGetters, mapMutations } from 'vuex';
+  import { getCart, setCart, deleteCart } from 'store/mutations-types';
+  import { mapGetters, mapMutations, mapActions } from 'vuex';
 
   export default {
     data() {
@@ -84,6 +87,9 @@
       this.list = this.getCart;
     },
     methods: {
+      ...mapActions([
+        deleteCart
+      ]),
       ...mapMutations([
         setCart
       ]),
@@ -100,6 +106,25 @@
           item.checked = this.allChecked;
           return item;
         });
+      },
+      addOrder() {
+        const list = this.list.filter(item => item.checked);
+        this.$post('/order/add', {
+          num: this.selectNum,
+          amount: this.selectPrice,
+          list: JSON.stringify(list)
+        })
+          .then(json => {
+            wx.showToast({
+              title: '下单成功',
+              icon: 'success',
+              duration: 2000
+            });
+            setTimeout(() => {
+              const ids = list.map(item => item.id);
+              this.deleteCart(ids);
+            }, 2000);
+          });
       }
     }
   };
