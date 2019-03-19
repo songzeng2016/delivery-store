@@ -65,7 +65,7 @@
         }).then(json => {
           const list = json.data.list;
           list.forEach(item => {
-            item.img = 'http://127.0.0.1:3000' + item.img;
+            item.img = 'http://songzeng1994.cn:3000' + item.img;
           });
           this.list = list.concat(this.list);
         });
