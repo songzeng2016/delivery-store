@@ -9,7 +9,7 @@
         <open-data type="userNickName"></open-data>
       </span>
     </div>
-    <ul class="type-list">
+    <ul class="type-list" @click="navToOrder">
       <li class="list">
         <span class="left">
           <span class="text text1">我的订单</span>
@@ -69,7 +69,15 @@
 </template>
 
 <script type="text/ecmascript-6">
-  export default {};
+  export default {
+    methods: {
+      navToOrder(type) {
+        wx.navigateTo({
+          url: '/pages/order/main'
+        });
+      }
+    }
+  };
 </script>
 
 <style lang="stylus" type="text/stylus" scoped>

@@ -102,6 +102,14 @@
         });
       },
       navToConfirm() {
+        if (!this.selectNum) {
+          wx.showToast({
+            title: '请选择商品',
+            icon: 'none',
+            duration: 1000
+          });
+          return;
+        }
         wx.navigateTo({
           url: '/pages/confirm/main'
         });

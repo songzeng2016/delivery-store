@@ -118,12 +118,15 @@
             wx.showToast({
               title: '下单成功',
               icon: 'success',
-              duration: 2000
+              duration: 1000
             });
             setTimeout(() => {
               const ids = list.map(item => item.id);
+              wx.redirectTo({
+                url: '/pages/order/main'
+              });
               this.deleteCart(ids);
-            }, 2000);
+            }, 1000);
           });
       }
     }

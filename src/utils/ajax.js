@@ -1,4 +1,5 @@
-const url = 'http://127.0.0.1:3000';
+// const url = 'http://127.0.0.1:3000';
+const url = 'http://songzeng1994.cn:3000';
 const methodType = {
   get: 'GET',
   post: 'POST'

@@ -9,7 +9,7 @@
         <img class="icon" src="/static/images/icon_cart.png" alt="">
       </div>
       <div class="add" @click="add">加入购物车</div>
-      <div class="buy">立即购买</div>
+      <div class="buy" @click="buy">立即购买</div>
     </div>
   </div>
 </template>
@@ -62,6 +62,10 @@
       add() {
         this.addCart(this.goods);
         this.cartCount += 1;
+      },
+      buy() {
+        this.add();
+        this.navToCart();
       },
       navToCart() {
         wx.switchTab({

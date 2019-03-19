@@ -18,6 +18,7 @@ export default {
       cart[goodsIndex].num = num;
       goods.num = num;
     } else {
+      goods.num = 1;
       cart.push(goods);
     }
 
