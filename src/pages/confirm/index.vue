@@ -6,7 +6,7 @@
         v-for="(item, index) in list"
         :key="index"
         v-if="item.checked">
-        <img class="img" :src="'http://songzeng1994.cn:3000' + item.img" alt="">
+        <img class="img" :src="host + item.img" alt="">
         <span class="info">
           <span class="name">{{item.name}}</span>
           <div class="bottom">

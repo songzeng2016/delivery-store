@@ -1,11 +1,13 @@
 // const url = 'http://127.0.0.1:3000';
-const url = 'http://songzeng1994.cn:3000/api';
+const host = 'http://songzeng1994.cn';
+const url = `${host}/api`;
 const methodType = {
   get: 'GET',
   post: 'POST'
 };
 
 const ajax = {
+  host,
   url,
   _request(method, url, data = {}) {
     return new Promise((resolve, reject) => {

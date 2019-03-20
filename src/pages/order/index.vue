@@ -3,7 +3,7 @@
     <ul v-for="(order, orderIndex) in list" :key="orderIndex" class="wrapper">
       <ul>
         <li class="list" v-for="(item, index) in order.list" :key="index">
-          <img class="img" :src="'http://songzeng1994.cn:3000' + item.img" alt="">
+          <img class="img" :src="host + item.img" alt="">
           <span class="info">
           <span class="name">{{item.name}}</span>
           <div class="bottom">

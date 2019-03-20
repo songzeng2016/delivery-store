@@ -18,7 +18,7 @@
         v-for="(item, index) in list"
         :key="index"
         @click="navToDetail(item)">
-        <img class="img" :src="item.src || item.img" alt="">
+        <img class="img" :src="host + item.img" alt="">
         <p class="name">{{item.name}}</p>
         <p class="price">￥{{item.price}}</p>
       </li>
@@ -27,14 +27,13 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import list from './data';
   import { getCart, setCart } from 'store/mutations-types';
   import { mapGetters, mapMutations } from 'vuex';
 
   export default {
     data() {
       return {
-        list,
+        list: [],
         imgUrls: [
           'https://yanxuan.nosdn.127.net/95f65bf31c7c305da532728d75b2039f.jpg?imageView&quality=75&thumbnail=750x0',
           'https://yanxuan.nosdn.127.net/0dc6d7a3d012795dcdbc5508090c3d89.jpg?imageView&quality=75&thumbnail=750x0',
@@ -64,10 +63,10 @@
           pageSize: 100
         }).then(json => {
           const list = json.data.list;
-          list.forEach(item => {
-            item.img = 'http://songzeng1994.cn:3000' + item.img;
-          });
-          this.list = list.concat(this.list);
+          // list.forEach(item => {
+          //   item.img = 'http://songzeng1994.cn:3000' + item.img;
+          // });
+          this.list = list;
         });
       },
       getCartList() {

@@ -1,6 +1,6 @@
 <template>
   <div class="detail">
-    <img :src="'http://songzeng1994.cn:3000' + goods.img" alt="">
+    <img :src="host + goods.img" alt="">
     <p>{{goods.name}} ￥{{goods.price}}</p>
     <p>{{goods.desc}}</p>
     <div class="cart">
