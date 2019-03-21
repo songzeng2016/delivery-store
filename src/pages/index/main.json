@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "首页",
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f4f4f4",
+  "backgroundTextStyle": "dark"
 }

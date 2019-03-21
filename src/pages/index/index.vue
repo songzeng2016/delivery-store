@@ -44,29 +44,29 @@
     computed: {
       ...mapGetters([
         getCart
-      ]),
+      ])
     },
     mounted() {
       this.getList();
       !this.getCart && this.getCartList();
     },
     onPullDownRefresh() {
-      this.getList();
+      this.getList(true);
     },
     methods: {
       ...mapMutations([
         setCart
       ]),
-      getList() {
+      getList(refresh) {
         this.$post('/goods/getList', {
           pageNum: 1,
           pageSize: 100
         }).then(json => {
           const list = json.data.list;
-          // list.forEach(item => {
-          //   item.img = 'http://songzeng1994.cn:3000' + item.img;
-          // });
           this.list = list;
+          refresh && setTimeout(() => {
+            wx.stopPullDownRefresh();
+          }, 500);
         });
       },
       getCartList() {

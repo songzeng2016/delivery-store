@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <img class="logo" src="/static/images/logo.jpg" alt="">
     <input class="input" v-model="form.account" type="text" placeholder="用户名">
     <input class="input" v-model="form.password" type="password" placeholder="密码">
     <button class="button" type="primary" @click="login">登录</button>
@@ -47,4 +48,8 @@
       padding: 10px
       border: 1px solid #ddd
       border-radius: 10px
+    .logo
+      width: 100px
+      height: 100px
+      margin-bottom: 30px
 </style>

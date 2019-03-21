@@ -1,5 +1,5 @@
-// const url = 'http://127.0.0.1:3000';
-const host = 'http://songzeng1994.cn';
+const host = 'http://127.0.0.1:3000';
+// const host = 'http://songzeng1994.cn';
 const url = `${host}/api`;
 const methodType = {
   get: 'GET',
@@ -31,6 +31,10 @@ const ajax = {
             wx.setStorageSync('sessionId', null);
             wx.setStorageSync('cart', null);
           } else {
+            wx.showToast({
+              title: msg || '请求出错',
+              icon: 'none'
+            });
             console.log(msg);
           }
         }

@@ -38,6 +38,10 @@
           type: this.type
         }).then(json => {
           this.list = json.data.list;
+          !this.list.length && wx.showToast({
+            title: '暂无订单',
+            icon: 'none'
+          });
         });
       }
     }

@@ -79,8 +79,6 @@
         this.selectNum = num;
         this.selectPrice = price;
         this.allChecked = allChecked;
-
-        this.setCart(list);
       }
     },
     mounted() {
@@ -93,20 +91,6 @@
       ...mapMutations([
         setCart
       ]),
-      // 单个商品选择，切换选择状态
-      checked(index) {
-        const item = this.list[index];
-        item.checked = !item.checked;
-        this.list.splice(index, 1, item);
-      },
-      // 全选
-      selectAll() {
-        this.allChecked = !this.allChecked;
-        this.list = this.list.map(item => {
-          item.checked = this.allChecked;
-          return item;
-        });
-      },
       addOrder() {
         const list = this.list.filter(item => item.checked);
         this.$post('/order/add', {
