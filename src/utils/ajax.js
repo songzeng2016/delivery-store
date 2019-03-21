@@ -1,5 +1,5 @@
-const host = 'http://127.0.0.1:3000';
-// const host = 'http://songzeng1994.cn';
+// const host = 'http://127.0.0.1:3000';
+const host = 'https://songzeng1994.cn';
 const url = `${host}/api`;
 const methodType = {
   get: 'GET',
